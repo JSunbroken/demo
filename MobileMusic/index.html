@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,
+  initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <!-- viewport视窗,width=device-width可视区域设备的宽，
+  initial-scale初始缩放比例 ，initial-scale=1.0,
+  minimum-scale=1.0最小缩放比例，
+  maximum-scale=1.0最大缩放比例-->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>MyMobileMusic</title>
+  <script>
+    //html文字的尺寸改为设备的宽度除10。分成10等份
+    document.getElementsByTagName("html")[0].style.fontSize = document.documentElement.clientWidth/10 + "px";
+  </script>
+</head>
+<body>
+  <header class="MusicHeader">
+    <!-- MusicName -->
+    <h3>爱不可及</h3>
+    <!-- MucisAuthor -->
+    <p>王菲</p>
+  </header>
+  <div class="MusicContent">
+    <div>
+        <img src="images/tx.jpg" alt="">
+    </div>
+  </div>
+
+  <div><!-- section代表章节 -->
+    <div class="MusicProgress">
+      <div class="pro-bg">
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="MusicBtn">
+    <div class="iconfont prev">&#xe6de;</div>
+    <div class="iconfont paly">&#xe60d;</div>
+    <div class="iconfont next">&#xe6dd;</div>
+  </div>
+  <audio id="music">
+    <source src="Music/王菲 - 爱不可及.mp3" type="audio/mpeg">
+  </audio>
+</body>
+<script>
+  var $prev = document.getElementsByClassName("prev")[0],
+      $paly = document.getElementsByClassName("paly")[0],
+      $next = document.getElementsByClassName("next")[0],
+      $bar = document.getElementsByClassName("bar")[0],
+      MusicProgress = document.getElementsByClassName("MusicProgress")[0],
+      pro_bg = document.getElementsByClassName("pro-bg")[0],
+      music = document.getElementById("music"),
+      bloo=true;
+
+      // 控制音乐开关
+      $paly.onclick= function(){
+        if(bloo){
+          music.play();
+          $paly.innerHTML="&#xe6ad;"
+        }else{
+          music.pause();
+          $paly.innerHTML="&#xe60d;"
+        }
+        bloo =!bloo;
+      };
+
+
+      var w = MusicProgress.offsetWidth - $bar.offsetWidth;//可移动距离；
+      // 获取播放进度
+      //监听timeupdate时间更新，时间更新了就执行function
+      music.addEventListener("timeupdate",function(){
+        var x = 0;
+        // console.log(this.currentTime);current当前，time时间，当前播放时间
+        // console.log(this.duration);歌曲总时间
+        var s = this.currentTime/this.duration;
+        x = s*w+"px";
+        /*x的得来：小滑块x当前能够移动的位置等于当前播放的时间ctime比上总的时间ation得出s,
+        这个s就是比例.拿这个s乘可移动的距离w，得出x。s看做一个百分比，
+        s是当前播放的时间占了总的时间百分之多少，那么这个百分比的
+        主要对象换成w，那么w的百分之多少就是当前小滑块的位置*/
+        pro_bg.style.width=x;
+        $bar.style.transform = "translate("+x+",-0.05rem)";
+        if(this.currentTime===this.duration){
+          music.pause();
+          $paly.innerHTML="&#xe60d;"
+          bloo=false;
+          x=0;
+          pro_bg.style.width=x;
+          $bar.style.transform = "translate("+x+",-0.05rem)";
+        }
+      });
+      var x0 = 0,x = 0,left1 = 0;
+      $bar.addEventListener("touchstart",function(e){
+        x0 = e.changedTouches[0].pageX;  // 涉及当前事件的手指数
+        document.addEventListener("touchmove",move);
+        document.addEventListener("touchend",function(e){//触屏结束的时候
+           left1 = x;
+           //解绑移动事件
+           document.removeEventListener("touchmove",move)
+        });
+      });
+
+      function move(e){
+        x = e.changedTouches[0].pageX - x0 + left1;//小滑盖的位置
+        if(x<0){//判断移动范围
+          x=0;
+        }else if(x>w||x===w){
+          x=w;
+        }
+        pro_bg.style.width=x+"px";
+        $bar.style.transform = "translate("+x+"px,-0.05rem)";
+        music.currentTime = x/w * music.duration;
+        //x已播放的进度。w全部的进度
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

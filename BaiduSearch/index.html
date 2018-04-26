@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>百度搜索</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .BaiduLog{
+    width: 280px;
+    height: 130px;
+    display: block;
+    margin: 100px auto 0px;
+
+  }
+  .show{
+    width: 625px;
+    height: 35px;
+    margin: 20px auto;
+    position: relative;
+  }
+  #inputVal{
+    width: 500px;
+    height: 35px;
+    text-indent: 10px;
+    float: left;
+    outline: none;
+  }
+  .but{
+    width: 110px;
+    height: 39px;
+    background-color: #03c;
+    color:#fff;
+    line-height: 39px;
+    text-align: center;
+    cursor:pointer;
+    float: left;
+  }
+  .but:hover{
+    background-color: #06f;
+  }
+  .search{
+    width: 502px;
+    display: none;
+    border:1px solid #ddd;
+    position: absolute;
+    top:37px;
+  }
+  .search ul li{
+    list-style: none;
+    width: 502px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+  }
+  .search ul li a{
+    color:#000;
+    text-decoration: none;
+    display:block;
+  }
+  .search ul li a:hover{
+    background-color: #ddd;
+  }
+</style>
+<body>
+  <img src="images/1.png" alt="log" class="BaiduLog">
+  <div class="show">
+    <input type="text" name="" value="" onkeyDown="keydownEvent()" id="inputVal">
+    <div class="but">百度一下</div>
+    <div class="search">
+      <ul></ul>
+    </div>
+  </div>
+  <script>
+    /*
+      数据是以jsonp跨域得来的
+      控制台Network监测数据：
+        1.XHR说简单点就是ajax
+        2.media字体
+        3.doc文档
+
+    */
+    var $search = document.getElementsByClassName("search")[0],//此语句不兼容ie8
+        $input = document.getElementById("inputVal"),
+        $btn = document.getElementsByClassName("but")[0],
+        $listul = $search.childNodes[1];//获取第一个,第0个和第2个是空格，空格也会获取
+    $btn.onclick = function(){
+      var CinputVal = $input.value;
+      CinputVal?window.location.href= `https://www.baidu.com/s?wd=`+CinputVal:window.location.href= "https://github.com/JSunbroken";
+    };
+    function keydownEvent() {
+      var CinputVal = $input.value;
+      var e = window.event || arguments.callee.caller.arguments[0];
+         if (e && e.keyCode == 13 ) {
+          CinputVal?window.location.href= `https://www.baidu.com/s?wd=`+CinputVal:window.location.href= "https://github.com/JSunbroken";
+         }
+     }
+    $input.onkeyup =  function(){//键盘弹起事件
+      var inputVal = this.value;
+      /*if(inputVal){
+        $search.style.display = "block";
+      }else{
+        $search.style.display = "none";
+      }
+      // 三目
+      inputVal?$search.style.display = "block":$search.style.display = "none";*/
+      $search.style.display = inputVal? "block":"none";
+      var Ascript = document.createElement("script");
+      Ascript.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+inputVal+"&cb=yuxi";
+      document.body.appendChild(Ascript);
+    };
+    function yuxi(json){
+      // console.log(json.s);//关键字列表
+      $listul.innerHTML = "";//清空原字符串
+      json.s.forEach(function(data){//遍历数组,但是forEach有兼容问题,foin遍历对象。数组用for||forEach
+        // console.log(data);
+        var ChildLi = document.createElement("li");
+          ChildLi.innerHTML = `<a href="http://www.baidu.com/s?wd=`+data+`">`+data+`</a>`
+          $listul.appendChild(ChildLi);
+      });
+    }
+  </script>
+</body>
+</html>

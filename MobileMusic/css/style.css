@@ -1,0 +1,186 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video ,button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font-family: "微软雅黑";
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+input{
+	outline: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+@font-face {font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot'); /* IE9*/
+    src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+	font-family:"iconfont" !important;
+	font-size:1.5rem;
+	color:#fff;
+	float: left;
+	margin: 0.55rem;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+.MusicBtn{
+	width: 8rem;
+	margin: auto;
+	overflow: hidden;
+}
+body{
+	background: url(../images/bg.jpg);
+	font-size:0.5rem;
+}
+.MusicHeader{
+	width: 10rem;
+	height: 2rem;
+	text-align:center;
+	color: #ffffff;
+}
+.MusicHeader h3{
+	line-height:1.4rem;
+}
+.MusicContent{
+	width: 8rem;
+	height:8rem;
+	margin: auto;
+	margin-top: 0.5rem;
+	border-radius:50%;
+	border:2px solid rgba(255, 255, 255, 0.7);
+
+}
+.MusicContent div{
+	width: 7.6rem;
+	height: 7.6rem;
+	margin: 0.2rem;
+	border-radius:50%;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+.MusicContent img{
+	width: 7rem;
+	height:7rem;
+	margin: 0.3rem;
+	border-radius:50%;
+}
+.MusicProgress{
+	width: 9rem;
+	height:0.1rem;
+	margin: auto;
+	margin-top: 1rem;
+	background-color: #c03;
+}
+.pro-bg{
+	width: 0px;
+	height:0.1rem;
+	background-color: #0f9;
+}
+.bar{
+	width: 0.2rem;
+	height: 0.2rem;
+	border-radius:50%;
+	background-color: #fff;
+	transform: translate(0px,-0.05rem);
+	/*css3的新属性-位移*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
